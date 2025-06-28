@@ -36,6 +36,11 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   };
 
+  // Root route
+  app.get("/", (req, res) => {
+    res.send("hi");
+  });
+
   // API Routes
   app.get("/profile", async (req, res) => {
     try {
