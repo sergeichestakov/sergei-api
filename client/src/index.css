@@ -1,0 +1,114 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: hsl(0, 0%, 100%);
+  --foreground: hsl(222, 84%, 4.9%);
+  --muted: hsl(210, 40%, 98%);
+  --muted-foreground: hsl(215.4, 16.3%, 46.9%);
+  --popover: hsl(0, 0%, 100%);
+  --popover-foreground: hsl(222, 84%, 4.9%);
+  --card: hsl(0, 0%, 100%);
+  --card-foreground: hsl(222, 84%, 4.9%);
+  --border: hsl(214.3, 31.8%, 91.4%);
+  --input: hsl(214.3, 31.8%, 91.4%);
+  --primary: hsl(221, 83%, 53%);
+  --primary-foreground: hsl(210, 40%, 98%);
+  --secondary: hsl(210, 40%, 96%);
+  --secondary-foreground: hsl(222, 47%, 11%);
+  --accent: hsl(210, 40%, 96%);
+  --accent-foreground: hsl(222, 47%, 11%);
+  --destructive: hsl(0, 84%, 60%);
+  --destructive-foreground: hsl(210, 40%, 98%);
+  --ring: hsl(221, 83%, 53%);
+  --radius: 0.5rem;
+  
+  /* Custom API documentation colors */
+  --api-blue: hsl(221, 83%, 53%);
+  --api-slate: hsl(215, 20%, 65%);
+  --api-emerald: hsl(158, 64%, 52%);
+  --api-bg: hsl(210, 40%, 98%);
+  --api-text: hsl(222, 84%, 4.9%);
+  --api-code-bg: hsl(210, 40%, 96%);
+  --api-code-text: hsl(222, 84%, 4.9%);
+}
+
+.dark {
+  --background: hsl(222, 84%, 4.9%);
+  --foreground: hsl(210, 40%, 98%);
+  --muted: hsl(217, 32%, 17%);
+  --muted-foreground: hsl(215, 20%, 65%);
+  --popover: hsl(222, 84%, 4.9%);
+  --popover-foreground: hsl(210, 40%, 98%);
+  --card: hsl(222, 84%, 4.9%);
+  --card-foreground: hsl(210, 40%, 98%);
+  --border: hsl(217, 32%, 17%);
+  --input: hsl(217, 32%, 17%);
+  --primary: hsl(221, 83%, 53%);
+  --primary-foreground: hsl(210, 40%, 98%);
+  --secondary: hsl(217, 32%, 17%);
+  --secondary-foreground: hsl(210, 40%, 98%);
+  --accent: hsl(217, 32%, 17%);
+  --accent-foreground: hsl(210, 40%, 98%);
+  --destructive: hsl(0, 63%, 31%);
+  --destructive-foreground: hsl(210, 40%, 98%);
+  --ring: hsl(221, 83%, 53%);
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply font-sans antialiased bg-background text-foreground;
+    font-family: 'Inter', system-ui, sans-serif;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+@layer utilities {
+  .text-api-blue {
+    color: var(--api-blue);
+  }
+  
+  .text-api-slate {
+    color: var(--api-slate);
+  }
+  
+  .text-api-emerald {
+    color: var(--api-emerald);
+  }
+  
+  .text-api-text {
+    color: var(--api-text);
+  }
+  
+  .bg-api-bg {
+    background-color: var(--api-bg);
+  }
+  
+  .bg-api-code-bg {
+    background-color: var(--api-code-bg);
+  }
+  
+  .text-api-code-text {
+    color: var(--api-code-text);
+  }
+  
+  .bg-api-blue {
+    background-color: var(--api-blue);
+  }
+  
+  .bg-api-emerald {
+    background-color: var(--api-emerald);
+  }
+  
+  .border-api-blue {
+    border-color: var(--api-blue);
+  }
+}
