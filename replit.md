@@ -59,9 +59,9 @@ This is a pure REST API server that provides structured access to personal infor
 ## Deployment Strategy
 
 ### Build Process
-- **Frontend**: Vite builds React app to `dist/public`
-- **Backend**: esbuild bundles Express server to `dist/index.js`
-- **Single Artifact**: Combined build output for unified deployment
+- **Backend Only**: esbuild bundles Express server to `dist/index.js`
+- **Build Script**: Custom build.js script handles the bundling process
+- **Output**: Single minified JavaScript file with sourcemap
 
 ### Environment Configuration
 - **Development**: Local development with hot reload via Vite

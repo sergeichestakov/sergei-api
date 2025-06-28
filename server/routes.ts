@@ -19,7 +19,6 @@ export async function registerRoutes(app: Express): Promise<Server> {
     next();
   });
 
-  // Helper function to calculate age from birthday
   const calculateAge = () => {
     const birthday = new Date('1998-05-10T14:00:00Z'); // May 10th, 1998 2pm UTC
     const today = new Date();
@@ -33,53 +32,30 @@ export async function registerRoutes(app: Express): Promise<Server> {
     return age;
   };
 
-  // Helper function to get current timestamp
-  const getCurrentTimestamp = () => new Date().toISOString();
-
   // Root route
   app.get("/", (req, res) => {
     res.send("hi");
   });
 
-  // API Routes
-  app.get("/profile", (req, res) => {
-    try {
-      const profile = {
-        name: "Sergei",
-        age: calculateAge(),
-        location: "San Francisco, CA",
-        bio: "Full-stack developer passionate about creating innovative web applications",
-        title: "Senior Software Engineer",
-        company: "Tech Innovations Inc.",
-        website: "https://sergei.com",
-        lastUpdated: getCurrentTimestamp(),
-      };
-      res.json(profile);
-    } catch (error) {
-      res.status(500).json({
-        error: "Failed to fetch profile",
-        details: error instanceof Error ? error.message : "Unknown error"
-      });
-    }
-  });
+  const contact = {
+    email: "me@sergei.com",
+    linkedin: "https://linkedin.com/in/sergeichestakov",
+    github: "https://github.com/sergeichestakov",
+    x: "https://x.com/sergeichestakov",
+  };
 
-  app.get("/contact", (req, res) => {
-    try {
-      const contact = {
-        email: "hello@sergei.com",
-        linkedin: "https://linkedin.com/in/sergei",
-        github: "https://github.com/sergei",
-        timezone: "America/Los_Angeles",
-        preferredContact: "email",
-        availability: "Monday-Friday, 9 AM - 6 PM PST",
-      };
-      res.json(contact);
-    } catch (error) {
-      res.status(500).json({
-        error: "Failed to fetch contact information",
-        details: error instanceof Error ? error.message : "Unknown error"
-      });
-    }
+  // API Routes
+  app.get("/about", (req, res) => {
+    const profile = {
+      name: "Sergei Chestakov",
+      age: calculateAge(),
+      location: "Brooklyn, NY",
+      bio: "Software Engineer & Creator",
+      company: "Sergei Dot Com, LLC",
+      website: "https://sergei.com",
+      contact,
+    };
+    res.json(profile);
   });
 
   const httpServer = createServer(app);
