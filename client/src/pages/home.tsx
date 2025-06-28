@@ -6,24 +6,12 @@ export default function Home() {
 
   const endpoints = [
     {
-      path: "/api/profile",
+      path: "/profile",
       description: "Basic profile information"
     },
     {
-      path: "/api/contact", 
+      path: "/contact", 
       description: "Contact information"
-    },
-    {
-      path: "/api/skills",
-      description: "Technical skills and experience"
-    },
-    {
-      path: "/api/projects",
-      description: "Featured projects"
-    },
-    {
-      path: "/api/social",
-      description: "Social media links"
     }
   ];
 

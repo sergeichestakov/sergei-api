@@ -37,7 +37,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
   };
 
   // API Routes
-  app.get("/api/profile", async (req, res) => {
+  app.get("/profile", async (req, res) => {
     try {
       const profile = await storage.getProfile();
       res.json(createResponse(true, profile));
@@ -50,7 +50,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
-  app.get("/api/contact", async (req, res) => {
+  app.get("/contact", async (req, res) => {
     try {
       const contact = await storage.getContact();
       res.json(createResponse(true, contact));
@@ -61,54 +61,6 @@ export async function registerRoutes(app: Express): Promise<Server> {
         details: error instanceof Error ? error.message : "Unknown error"
       }));
     }
-  });
-
-  app.get("/api/skills", async (req, res) => {
-    try {
-      const skills = await storage.getSkills();
-      res.json(createResponse(true, skills));
-    } catch (error) {
-      res.status(500).json(createResponse(false, null, {
-        code: 500,
-        message: "Failed to fetch skills",
-        details: error instanceof Error ? error.message : "Unknown error"
-      }));
-    }
-  });
-
-  app.get("/api/projects", async (req, res) => {
-    try {
-      const projects = await storage.getProjects();
-      res.json(createResponse(true, projects));
-    } catch (error) {
-      res.status(500).json(createResponse(false, null, {
-        code: 500,
-        message: "Failed to fetch projects",
-        details: error instanceof Error ? error.message : "Unknown error"
-      }));
-    }
-  });
-
-  app.get("/api/social", async (req, res) => {
-    try {
-      const social = await storage.getSocial();
-      res.json(createResponse(true, social));
-    } catch (error) {
-      res.status(500).json(createResponse(false, null, {
-        code: 500,
-        message: "Failed to fetch social links",
-        details: error instanceof Error ? error.message : "Unknown error"
-      }));
-    }
-  });
-
-  // Handle 404 for API routes
-  app.use("/api/*", (req, res) => {
-    res.status(404).json(createResponse(false, null, {
-      code: 404,
-      message: "Endpoint not found",
-      details: `The requested endpoint '${req.path}' does not exist`
-    }));
   });
 
   const httpServer = createServer(app);
