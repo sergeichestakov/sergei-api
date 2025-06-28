@@ -64,14 +64,14 @@ This is a pure REST API server that provides structured access to personal infor
 - **Output**: Single minified JavaScript file with sourcemap
 
 ### Environment Configuration
-- **Development**: Local development with hot reload via Vite
-- **Production**: Node.js server serving both API and static files
-- **Database**: PostgreSQL connection via DATABASE_URL environment variable
+- **Development**: Local development with hot reload via tsx
+- **Production**: Node.js server serving API endpoints only
+- **Dependencies**: Minimal - only Express, CORS, TypeScript, and build tools
 
 ### Hosting Requirements
 - Node.js runtime environment
-- PostgreSQL database access
-- Environment variables for database connection
+- No database required - uses in-memory constants
+- No environment variables needed for basic operation
 
 ## Changelog
 
