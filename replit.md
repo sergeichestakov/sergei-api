@@ -81,6 +81,7 @@ Changelog:
 - June 28, 2025. Simplified home page - removed verbose documentation sections
 - June 28, 2025. Removed /api prefix from endpoints and reduced to 2 endpoints: /profile and /contact
 - June 28, 2025. Removed React frontend entirely - now pure API server with root endpoint returning "hi"
+- June 28, 2025. Removed storage.ts, moved data to constants in routes, age calculated from birthday (May 10, 1998 2pm UTC), flattened JSON responses (removed success wrapper)
 ```
 
 ## User Preferences

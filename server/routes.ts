@@ -1,6 +1,5 @@
 import type { Express } from "express";
 import { createServer, type Server } from "http";
-import { storage } from "./storage";
 import cors from "cors";
 
 export async function registerRoutes(app: Express): Promise<Server> {
@@ -20,21 +19,22 @@ export async function registerRoutes(app: Express): Promise<Server> {
     next();
   });
 
-  // Helper function to create consistent API responses
-  const createResponse = (success: boolean, data?: any, error?: any) => {
-    if (success) {
-      return { success: true, data };
-    } else {
-      return { 
-        success: false, 
-        error: {
-          code: error.code || 500,
-          message: error.message || 'Internal Server Error',
-          details: error.details || 'An unexpected error occurred'
-        }
-      };
+  // Helper function to calculate age from birthday
+  const calculateAge = () => {
+    const birthday = new Date('1998-05-10T14:00:00Z'); // May 10th, 1998 2pm UTC
+    const today = new Date();
+    let age = today.getFullYear() - birthday.getFullYear();
+    const monthDiff = today.getMonth() - birthday.getMonth();
+    
+    if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < birthday.getDate())) {
+      age--;
     }
+    
+    return age;
   };
+
+  // Helper function to get current timestamp
+  const getCurrentTimestamp = () => new Date().toISOString();
 
   // Root route
   app.get("/", (req, res) => {
@@ -42,29 +42,43 @@ export async function registerRoutes(app: Express): Promise<Server> {
   });
 
   // API Routes
-  app.get("/profile", async (req, res) => {
+  app.get("/profile", (req, res) => {
     try {
-      const profile = await storage.getProfile();
-      res.json(createResponse(true, profile));
+      const profile = {
+        name: "Sergei",
+        age: calculateAge(),
+        location: "San Francisco, CA",
+        bio: "Full-stack developer passionate about creating innovative web applications",
+        title: "Senior Software Engineer",
+        company: "Tech Innovations Inc.",
+        website: "https://sergei.com",
+        lastUpdated: getCurrentTimestamp(),
+      };
+      res.json(profile);
     } catch (error) {
-      res.status(500).json(createResponse(false, null, {
-        code: 500,
-        message: "Failed to fetch profile",
+      res.status(500).json({
+        error: "Failed to fetch profile",
         details: error instanceof Error ? error.message : "Unknown error"
-      }));
+      });
     }
   });
 
-  app.get("/contact", async (req, res) => {
+  app.get("/contact", (req, res) => {
     try {
-      const contact = await storage.getContact();
-      res.json(createResponse(true, contact));
+      const contact = {
+        email: "hello@sergei.com",
+        linkedin: "https://linkedin.com/in/sergei",
+        github: "https://github.com/sergei",
+        timezone: "America/Los_Angeles",
+        preferredContact: "email",
+        availability: "Monday-Friday, 9 AM - 6 PM PST",
+      };
+      res.json(contact);
     } catch (error) {
-      res.status(500).json(createResponse(false, null, {
-        code: 500,
-        message: "Failed to fetch contact information",
+      res.status(500).json({
+        error: "Failed to fetch contact information",
         details: error instanceof Error ? error.message : "Unknown error"
-      }));
+      });
     }
   });
 
