@@ -1,26 +1,18 @@
-# Sergei's Personal API Documentation
+# Sergei's Personal API Server
 
 ## Overview
 
-This is a full-stack web application that serves as both a personal API documentation site and a REST API providing structured access to personal information. The application is built with a modern React frontend showcasing API documentation and an Express.js backend serving personal data endpoints.
+This is a pure REST API server that provides structured access to personal information. The application is built with Express.js and TypeScript, serving JSON endpoints for programmatic consumption. The root endpoint returns a simple "hi" greeting, while API endpoints provide structured personal data.
 
 ## System Architecture
 
-### Frontend Architecture
-- **Framework**: React 18 with TypeScript
-- **Build Tool**: Vite for development and build processes
-- **UI Library**: shadcn/ui components built on Radix UI primitives
-- **Styling**: Tailwind CSS with custom CSS variables for theming
-- **State Management**: TanStack Query (React Query) for server state management
-- **Routing**: Wouter for lightweight client-side routing
-
-### Backend Architecture
+### API Architecture
 - **Runtime**: Node.js with Express.js framework
 - **Language**: TypeScript with ES modules
-- **Database ORM**: Drizzle ORM configured for PostgreSQL
-- **Database Provider**: Neon Database (serverless PostgreSQL)
-- **Session Management**: PostgreSQL-based sessions with connect-pg-simple
-- **Development**: Hot reload with Vite middleware integration
+- **Database ORM**: Drizzle ORM configured for PostgreSQL (optional)
+- **Storage**: In-memory storage for personal data
+- **CORS**: Enabled for cross-origin requests
+- **Response Format**: Consistent JSON responses with success/error wrapping
 
 ## Key Components
 
@@ -88,6 +80,7 @@ Changelog:
 - June 28, 2025. Initial setup with 5 endpoints (/api/profile, /api/contact, /api/skills, /api/projects, /api/social)
 - June 28, 2025. Simplified home page - removed verbose documentation sections
 - June 28, 2025. Removed /api prefix from endpoints and reduced to 2 endpoints: /profile and /contact
+- June 28, 2025. Removed React frontend entirely - now pure API server with root endpoint returning "hi"
 ```
 
 ## User Preferences
